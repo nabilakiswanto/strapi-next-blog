@@ -17,7 +17,7 @@ export interface LinkProps {
     image: ImageProps;
   }
   
-  type ComponentType = "blocks.hero-section" | "blocks.info-block";
+  type ComponentType = "blocks.hero-section" | "blocks.info-block" | "blocks.featured-article";
   
   interface Base<
     T extends ComponentType,
@@ -32,7 +32,7 @@ export interface LinkProps {
     data?: D;
   }
   
-  export type Block = HeroSectionProps | InfoBlockProps;
+  export type Block = HeroSectionProps | InfoBlockProps | FeaturedArticleProps;
   
   export interface HeroSectionProps extends Base<"blocks.hero-section"> {
     theme: "turquoise" | "navy";
@@ -52,3 +52,11 @@ export interface LinkProps {
     image: ImageProps;
     cta?: LinkProps;
   }
+
+  export interface FeaturedArticleProps extends Base<"blocks.featured-article"> {
+    headline: string;
+    excerpt: string;
+    link: LinkProps;
+    image: ImageProps;
+  }
+  

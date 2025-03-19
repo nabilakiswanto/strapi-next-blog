@@ -64,6 +64,14 @@ const pageBySlugQuery = (slug: string) => qs.stringify(
               cta: true,
             },
           },
+          "blocks.featured-article": {
+            populate: {
+              image: {
+                fields: ["url", "alternativeText"],
+              },
+              link: true,
+            },
+          },
         },
       },
     },

@@ -2,6 +2,7 @@ import type { Block } from "@/types";
 
 import { HeroSection } from "@/components/blocks/HeroSection";
 import { InfoBlock } from "@/components/blocks/InfoBlock";
+import { FeaturedArticle } from "./blocks/FeaturedArticle";
 
 function blockRenderer(block: Block, index: number) {
   switch (block.__component) {
@@ -9,6 +10,8 @@ function blockRenderer(block: Block, index: number) {
       return <HeroSection {...block} key={index} />;
     case "blocks.info-block":
       return <InfoBlock {...block} key={index} />;
+    case "blocks.featured-article":
+      return <FeaturedArticle {...block} key={index} />;
     default:
       return null;
   }
