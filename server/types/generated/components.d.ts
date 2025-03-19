@@ -1,5 +1,29 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlocksFeaturedArticle extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_featured_articles';
+  info: {
+    displayName: 'Featured Article';
+  };
+  attributes: {
+    excerpt: Schema.Attribute.RichText;
+    headline: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files'>;
+    link: Schema.Attribute.Component<'elements.link', false>;
+  };
+}
+
+export interface BlocksHeading extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_headings';
+  info: {
+    displayName: 'Heading';
+  };
+  attributes: {
+    heading: Schema.Attribute.String;
+    linkId: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksHeroSection extends Struct.ComponentSchema {
   collectionName: 'components_blocks_hero_sections';
   info: {
@@ -79,6 +103,8 @@ export interface LayoutHeader extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'blocks.featured-article': BlocksFeaturedArticle;
+      'blocks.heading': BlocksHeading;
       'blocks.hero-section': BlocksHeroSection;
       'blocks.info-block': BlocksInfoBlock;
       'elements.link': ElementsLink;

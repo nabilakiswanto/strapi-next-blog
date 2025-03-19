@@ -437,6 +437,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
 export interface ApiPagePage extends Struct.CollectionTypeSchema {
   collectionName: 'pages';
   info: {
+    description: '';
     displayName: 'Page';
     pluralName: 'pages';
     singularName: 'page';
@@ -446,7 +447,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['blocks.info-block', 'blocks.hero-section']
+      ['blocks.info-block', 'blocks.hero-section', 'blocks.featured-article']
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
