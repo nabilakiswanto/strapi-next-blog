@@ -18,9 +18,10 @@ export default async function HomeRoute() {
         <BlockRenderer blocks={blocks} />
         <div className="container">
           <ContentList
-                  headline="Latest Articles"
+                  headline="Featured Articles"
                   path="/api/articles"
                   component={BlogCard}
+                  featured
               />
         </div>
   </div>

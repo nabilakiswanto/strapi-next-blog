@@ -23,8 +23,7 @@ interface PageProps {
 
 
 export default async function BlogRoute({ params }: PageProps) {
-  const slug = (await params).slug;
-  const { blocks } = await loader(slug);
+  const { blocks } = await loader("blog");
   return <div className="blog-page">
     <BlockRenderer blocks={blocks} />
     <ContentList
