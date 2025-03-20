@@ -16,13 +16,14 @@ async function loader(slug: string) {
     return { blocks: response.data[0]?.blocks };
   }
 interface PageProps {
-  params: Promise<{ slug: string }>
+  searchParams: Promise<{ page?:string; query?: string}>
 }
 
 
 
 
-export default async function BlogRoute({ params }: PageProps) {
+export default async function BlogRoute({ searchParams }: PageProps) {
+  const { page, query } = await searchParams;
   const { blocks } = await loader("blog");
   return <div className="blog-page">
     <BlockRenderer blocks={blocks} />
@@ -30,6 +31,10 @@ export default async function BlogRoute({ params }: PageProps) {
         headline="Latest Articles"
         path="/api/articles"
         component={BlogCard}
+        page={page}
+        query={query}
+        showSearch
+        showPagination
     />
   </div>;
 }
