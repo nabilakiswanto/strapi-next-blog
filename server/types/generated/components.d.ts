@@ -13,6 +13,16 @@ export interface BlocksFeaturedArticle extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksFullImage extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_full_images';
+  info: {
+    displayName: 'Full Image';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images' | 'files'>;
+  };
+}
+
 export interface BlocksHeading extends Struct.ComponentSchema {
   collectionName: 'components_blocks_headings';
   info: {
@@ -49,6 +59,29 @@ export interface BlocksInfoBlock extends Struct.ComponentSchema {
     image: Schema.Attribute.Media<'images' | 'files'>;
     reversed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     theme: Schema.Attribute.Enumeration<['turquoise', 'navy']>;
+  };
+}
+
+export interface BlocksParagraph extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_paragraphs';
+  info: {
+    displayName: 'Paragraph';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+  };
+}
+
+export interface BlocksParagraphWithImage extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_paragraph_with_images';
+  info: {
+    displayName: 'Paragraph With Image';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    image: Schema.Attribute.Media<'images' | 'files'>;
+    imageLandscape: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    reversed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
   };
 }
 
@@ -104,9 +137,12 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'blocks.featured-article': BlocksFeaturedArticle;
+      'blocks.full-image': BlocksFullImage;
       'blocks.heading': BlocksHeading;
       'blocks.hero-section': BlocksHeroSection;
       'blocks.info-block': BlocksInfoBlock;
+      'blocks.paragraph': BlocksParagraph;
+      'blocks.paragraph-with-image': BlocksParagraphWithImage;
       'elements.link': ElementsLink;
       'elements.logo': ElementsLogo;
       'layout.footer': LayoutFooter;
