@@ -17,7 +17,14 @@ export interface LinkProps {
     image: ImageProps;
   }
   
-  type ComponentType = "blocks.hero-section" | "blocks.info-block" | "blocks.featured-article";
+  type ComponentType =
+  | "blocks.hero-section"
+  | "blocks.info-block"
+  | "blocks.featured-article"
+  | "blocks.heading"
+  | "blocks.paragraph-with-image"
+  | "blocks.paragraph"
+  | "blocks.full-image";
   
   interface Base<
     T extends ComponentType,
@@ -32,7 +39,14 @@ export interface LinkProps {
     data?: D;
   }
   
-  export type Block = HeroSectionProps | InfoBlockProps | FeaturedArticleProps;
+  export type Block =
+  | HeroSectionProps
+  | InfoBlockProps
+  | FeaturedArticleProps
+  | HeadingProps
+  | ParagraphWithImageProps
+  | ParagraphProps
+  | FullImageProps;
   
   export interface HeroSectionProps extends Base<"blocks.hero-section"> {
     theme: "turquoise" | "navy";
@@ -73,4 +87,63 @@ export interface LinkProps {
     createdAt: string;
     updatedAt: string;
   }
+
+
+interface Base<T extends ComponentType, D extends object = Record<string, unknown>> {
+  id: number;
+  __component?: T;
+  documentId?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
+  data?: D;
+}
+
+export interface HeroSectionProps extends Base<"blocks.hero-section"> {
+  theme: "turquoise" | "navy";
+  heading: string;
+  image: ImageProps;
+  cta?: LinkProps;
+  logo?: LogoProps;
+  author?: string;
+  darken?: boolean;
+}
+
+export interface InfoBlockProps extends Base<"blocks.info-block"> {
+  theme: "turquoise" | "navy";
+  reversed?: boolean;
+  headline: string;
+  content: string;
+  image: ImageProps;
+  cta?: LinkProps;
+}
+
+export interface FeaturedArticleProps extends Base<"blocks.featured-article"> {
+  headline: string;
+  excerpt: string;
+  link: LinkProps;
+  image: ImageProps;
+}
+
+export interface HeadingProps extends Base<"blocks.heading"> {
+  heading: string;
+  linkId?: string;
+}
+
+export interface ParagraphWithImageProps extends Base<"blocks.paragraph-with-image"> {
+  content: string;
+  image: ImageProps;
+  reversed?: boolean;
+  imageLandscape?: boolean;
+}
+
+export interface ParagraphProps extends Base<"blocks.paragraph"> {
+  content: string;
+}
+
+export interface FullImageProps extends Base<"blocks.full-image"> {
+  id: number;
+  __component: "blocks.full-image";
+  image: ImageProps;
+}
   
