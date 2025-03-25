@@ -4,8 +4,8 @@ import "../sass/main.scss";
 
 import { getGlobalSettings } from "@/data/loaders";
 
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { Header } from "../components/layout/Header";
+import { Footer } from "../components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
